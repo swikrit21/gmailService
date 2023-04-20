@@ -1,5 +1,5 @@
-var axios = require("axios");
-var qs = require("qs");
+const axios = require("axios");
+const qs = require("qs");
 
 class GmailAPI {
   accessToken = "";
@@ -17,7 +17,7 @@ class GmailAPI {
         Authorization: `Bearer ya29.a0Ael9sCN6p8brDmVBQhk4llUpo5hQv4t3LnQqPVk7QjkORr_SfswTmIBFciRdpoo7-1Kgj8UL4kXCtt-G-qzbo9nd76CoUkFNSAPTzWvDkbYMLcrb4Z63bCISAY0EdBRpsYQqKvIIGAaqqkj-5ZR-0y9V1eTlnZsaCgYKAUMSARASFQF4udJhzVszaE54Kc_KQRgX3nA2nw0166`,
       },
     };
-    var threadId = "";
+    let threadId = "";
 
     await axios(config1)
       .then(async function (response) {
