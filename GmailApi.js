@@ -3,11 +3,6 @@ const qs = require("qs");
 const accessToken = require("./accessToken");
 
 class GmailAPI {
-  accessToken = "";
-  constructor() {
-    this.accessToken = accessToken();
-  }
-
   searchGmail = async (searchItem) => {
     const config1 = {
       method: "get",
