@@ -2,20 +2,20 @@ const axios = require("axios");
 const qs = require("qs");
 const accessToken = require("./accessToken");
 
-class GmailLabel {
-  getAllLabel = async () => {
+class GmailThread {
+  getAllThread = async () => {
     const config = {
       method: "get",
-      url: "https://gmail.googleapis.com/gmail/v1/users/me/labels",
+      url: "https://gmail.googleapis.com/gmail/v1/users/me/threads",
       headers: {
         Authorization: `Bearer ${await accessToken()}`,
       },
     };
     const data = await axios(config);
-    console.log(data.data);
+    console.log(data.data.threads);
   };
-  getLabels = async () => {
-    const threads = await this.getAllLabel();
+  getThreads = async () => {
+    const threads = await this.getAllThread();
   };
 }
-new GmailLabel().getLabels();
+new GmailThread().getAllThread();

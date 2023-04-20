@@ -1,8 +1,9 @@
 const axios = require("axios");
-const qs = require("qs");
 const accessToken = require("./accessToken");
 
 class GmailAPI {
+  //search gmail
+
   searchGmail = async (searchItem) => {
     const config1 = {
       method: "get",
@@ -16,10 +17,8 @@ class GmailAPI {
 
     await axios(config1)
       .then(async function (response) {
-        console.log(response?.data);
+        console.log(response);
         threadId = await response?.data["messages"][0]?.id;
-
-        console.log("ThreadId = " + threadId);
       })
       .catch(function (error) {
         console.log(error);
@@ -27,6 +26,8 @@ class GmailAPI {
 
     return threadId;
   };
+
+  //read gmail content
 
   readGmailContent = async (messageId) => {
     const config = {
@@ -50,6 +51,7 @@ class GmailAPI {
     return data;
   };
 
+  //read inbox message
   readInboxContent = async (searchText) => {
     const threadId = await this.searchGmail(searchText);
     const message = await this.readGmailContent(threadId);
@@ -57,8 +59,6 @@ class GmailAPI {
     const encodedMessage = await message.payload["parts"][0].body.data;
 
     const decodedStr = Buffer.from(encodedMessage, "base64").toString("ascii");
-
-    console.log(decodedStr);
 
     return decodedStr;
   };
